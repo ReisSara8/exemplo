@@ -61,13 +61,13 @@ class Users extends CI_Controller {
 			'trim|required|min_length[4]');
 		$this->form_validation->set_rules(
 			'email', 'Email', 
-			'trim|required|min_length[10]');
+			'trim|required|min_length[10]|valid_email');
         $this->form_validation->set_rules(
 			'username', 'Username', 
-			'trim|required|min_length[4]');
+			'trim|required|min_length[4]|is_unique[users.name]');
 		$this->form_validation->set_rules(
 			'password', 'Password', 
-			'trim|required|min_length[4]');
+			'trim|required|min_length[4]is_unique[users.password]');
 		$this->form_validation->set_rules(
 			'confirm_password', 'Confirm Password', 
 			'trim|required|min_length[4]|matches[password]');
@@ -95,7 +95,7 @@ class Users extends CI_Controller {
 
 	public function login() {
 
-		$this->form_validation->set_rules(
+	/*	$this->form_validation->set_rules(
 			'username', 'Username', 
 			'trim|required|min_length[4]');
 		$this->form_validation->set_rules('password', 'Password', 
@@ -114,10 +114,12 @@ class Users extends CI_Controller {
 
 			redirect('home/index');
 
-		} else {
+		} else {*/
 
 	    $username = $this->input->post('username');
 		$password = $this->input->post('password');
+
+		$this->load->model('User_model');
 
 		$user_id = $this->User_model->login_user($username, $password);
 
@@ -133,21 +135,16 @@ class Users extends CI_Controller {
 
 		$this->session->set_flashdata('login_success', 'You are now logged in!');
 
-		$data['main_view'] = 'users/principal_view';
-
-	    $this->load->view('layout/main', $data);
+	    $this->load->view('users/principal_view');
 
 		} else {
 
 			$this->session->set_flashdata('login_failed', 'Sorry, you are not now logged in!');
 			redirect('home/index');
 
-		     }
-
 		}
 
 	}
-
 	public function logout(){
 
 		$this->session->sess_destroy();

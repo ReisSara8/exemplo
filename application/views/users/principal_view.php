@@ -23,8 +23,9 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<?php echo base_url();?>">Login<span class="sr-only"></span></a></li>
-        <li ><a href="<?php echo base_url('users/register');?>">Register<span class="sr-only"></span></a></li>
+        <li class="active"><a href="#">Home<span class="sr-only"></span></a></li>
+        <li ><a href="<?php echo base_url();?>companies/index">Register Company<span class="sr-only"></span></a></li>
+
       </ul>
      </li>
     </ul> 
@@ -38,19 +39,10 @@
 
 <div class="container">
 
-    <div class="col-xs-3">
-
-    <?php $this->load->view('users/login_view'); ?>
-
-    </div>
-
-    <div class="col-xs-9">
-
-    <?php $this->load->view($main_view); ?>
-
-    </div>
+    <h1><center>Welcome to the Home Page!</center></h1>
 
 </div>
 
 </body>
 </html>
+

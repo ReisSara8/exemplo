@@ -1,27 +1,5 @@
 <?php if($this->session->userdata('logged_in')); ?>
 
-<h2>Logout</h2>
-
-<?php echo form_open('users/logout'); ?>
-
-<?php
-
-	$data = array(
-
-	'class' => 'btn btn-primary',
-	'name'  => 'submit',
-	'value' => 'Logout'
-
-	);
-
-?>
-
-<?php echo form_submit($data); ?>
-
-<?php echo form_close(); ?>
-
-<?php echo "Logout" ?>
-
 <h2>Login form</h2>
 
 <?php $attributes = array('id' => 'login_form', 'class' =>'form_horizontal')  ?>
@@ -85,8 +63,6 @@
  <?php echo form_password($data); ?>
 
 </div>
-
-<div>
 	
 <div class="form-group">
 
@@ -101,11 +77,6 @@
 	);
 
  ?>	
-
- <div id='err_msg' style='display: none'>  
-                <div id='content_result'>  
-                <div id='err_show' class="w3-text-red">  
-                <div id='msg'> </div>
 
 <?php echo form_submit($data); ?>
 
@@ -135,8 +106,7 @@
         cache: false,  
         success: function(result){  
             if(result!=0){  
-            window.location.replace(result);
-            window.location.replace('<?php echo base_url(); ?>" + "companies/register_view');  
+            window.location.replace(result); 
             }  
             else  
                 jQuery("div#err_msg").show();  

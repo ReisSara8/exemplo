@@ -1,7 +1,6 @@
 <?php 
 
-class Companie_model extends CI_model {
-
+class Company_model extends CI_model {
 
 public function create_company() {
 
@@ -24,5 +23,7 @@ public function create_company() {
 	$insert_data = $this->db->insert('companies', $data);
 
 	return $insert_data;
+
+}
 
 }

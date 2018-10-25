@@ -55,7 +55,7 @@ public function create_user() {
 		'first_name'     =>$this->input->post('first_name'),
 		'last_name'      =>$this->input->post('last_name'),
 		'email'          =>$this->input->post('email'),
-		'name'       =>$this->input->post('username'),
+		'name'           =>$this->input->post('username'),
 		'password'       =>$encripted_pass
 
 	);
@@ -68,21 +68,20 @@ public function create_user() {
 
 public function login_user($username, $password) {
 
-	$this->db->where('name', $username);
+	$this->db->select();
+	$this->db->from('users');
+	$this->db->where('name', $username );
+	$this->db->where('password', $password);
 
-	$result = $this->db->get('users');
+	$result = $this->db->get();
 
-	$db_password = $result->num_rows(2)->password;
 
-	if(password_verify($password, $db_password)) {
+	if($result->num_rows() > 0){
 
-		return $result->row(0)->id;
-
-	} else {
-
-		return false;
-
-	}
+		return $result->result_array()[0]['id'];
+	
+	} 
+	 return false;
 
 }
 
